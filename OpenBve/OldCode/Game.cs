@@ -23,6 +23,7 @@ namespace OpenBve {
 				this.TrackPosition = TrackPosition;
 			}
 		}
+
 		internal static float NoFogStart = 800.0f; // must not be 600 or below
 		internal static float NoFogEnd = 1600.0f;
 		internal static Fog PreviousFog = new Fog(NoFogStart, NoFogEnd, new Color24(128, 128, 128), 0.0);
@@ -127,7 +128,7 @@ namespace OpenBve {
 		// interface type
 		internal enum InterfaceType { Normal, Pause, Menu }
 		internal static InterfaceType CurrentInterface = InterfaceType.Normal;
-		internal enum MenuTag { None, Caption, Back, JumpToStation, ExitToMainMenu, Quit }
+		internal enum MenuTag { None, Caption, Back, JumpToStation, Save, ExitToMainMenu, Quit }
 		internal abstract class MenuEntry {
 			internal string Text;
 			internal double Highlight;
@@ -189,29 +190,32 @@ namespace OpenBve {
 						n++;
 					}
 				}
+
 				if (n != 0) {
+					CurrentMenu = new MenuEntry[5];
+					CurrentMenu[0] = new MenuCommand(Interface.GetInterfaceString("menu_resume"), MenuTag.Back, 0);
+					CurrentMenu[1] = new MenuCommand(Interface.GetInterfaceString("Save"),MenuTag.Save,0);
+					CurrentMenu[2] = new MenuSubmenu(Interface.GetInterfaceString("menu_jump"), a);
+					CurrentMenu[3] = new MenuSubmenu(Interface.GetInterfaceString("menu_exit"), new MenuEntry[] {
+					                                 	new MenuCaption(Interface.GetInterfaceString("menu_exit_question")),
+					                                 	new MenuCommand(Interface.GetInterfaceString("menu_exit_no"), MenuTag.Back, 0),
+					                                 	new MenuCommand(Interface.GetInterfaceString("menu_exit_yes"), MenuTag.ExitToMainMenu, 0)
+					                                 });
+					CurrentMenu[4] = new MenuSubmenu(Interface.GetInterfaceString("menu_quit"), new MenuEntry[] {
+					                                 	new MenuCaption(Interface.GetInterfaceString("menu_quit_question")),
+					                                 	new MenuCommand(Interface.GetInterfaceString("menu_quit_no"), MenuTag.Back, 0),
+					                                 	new MenuCommand(Interface.GetInterfaceString("menu_quit_yes"), MenuTag.Quit, 0)
+					                                 });
+				} else {
 					CurrentMenu = new MenuEntry[4];
 					CurrentMenu[0] = new MenuCommand(Interface.GetInterfaceString("menu_resume"), MenuTag.Back, 0);
-					CurrentMenu[1] = new MenuSubmenu(Interface.GetInterfaceString("menu_jump"), a);
+					CurrentMenu[1] = new MenuCommand(Interface.GetInterfaceString("save"),MenuTag.Back,0);
 					CurrentMenu[2] = new MenuSubmenu(Interface.GetInterfaceString("menu_exit"), new MenuEntry[] {
 					                                 	new MenuCaption(Interface.GetInterfaceString("menu_exit_question")),
 					                                 	new MenuCommand(Interface.GetInterfaceString("menu_exit_no"), MenuTag.Back, 0),
 					                                 	new MenuCommand(Interface.GetInterfaceString("menu_exit_yes"), MenuTag.ExitToMainMenu, 0)
 					                                 });
 					CurrentMenu[3] = new MenuSubmenu(Interface.GetInterfaceString("menu_quit"), new MenuEntry[] {
-					                                 	new MenuCaption(Interface.GetInterfaceString("menu_quit_question")),
-					                                 	new MenuCommand(Interface.GetInterfaceString("menu_quit_no"), MenuTag.Back, 0),
-					                                 	new MenuCommand(Interface.GetInterfaceString("menu_quit_yes"), MenuTag.Quit, 0)
-					                                 });
-				} else {
-					CurrentMenu = new MenuEntry[3];
-					CurrentMenu[0] = new MenuCommand(Interface.GetInterfaceString("menu_resume"), MenuTag.Back, 0);
-					CurrentMenu[1] = new MenuSubmenu(Interface.GetInterfaceString("menu_exit"), new MenuEntry[] {
-					                                 	new MenuCaption(Interface.GetInterfaceString("menu_exit_question")),
-					                                 	new MenuCommand(Interface.GetInterfaceString("menu_exit_no"), MenuTag.Back, 0),
-					                                 	new MenuCommand(Interface.GetInterfaceString("menu_exit_yes"), MenuTag.ExitToMainMenu, 0)
-					                                 });
-					CurrentMenu[2] = new MenuSubmenu(Interface.GetInterfaceString("menu_quit"), new MenuEntry[] {
 					                                 	new MenuCaption(Interface.GetInterfaceString("menu_quit_question")),
 					                                 	new MenuCommand(Interface.GetInterfaceString("menu_quit_no"), MenuTag.Back, 0),
 					                                 	new MenuCommand(Interface.GetInterfaceString("menu_quit_yes"), MenuTag.Quit, 0)

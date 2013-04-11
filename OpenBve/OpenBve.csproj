@@ -79,6 +79,7 @@
       <HintPath>..\Tao.Sdl.dll</HintPath>
       <Package>tao-sdl</Package>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Graphics\Camera.cs" />

@@ -699,6 +699,17 @@ namespace OpenBve {
 														// quit
 														Quit = true;
 														break;
+													case Game.MenuTag.Save:
+														//save 
+														
+														System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(a.GetType());
+														string routen = Game.LogRouteName.ToString();														
+														string timestamp = String.Format("{yyyy-MM-dd_HH-mm}",DateTime.Now);
+														string filepath = string.Concat("./bve/Saves/",routen,timestamp);
+														System.IO.StreamWriter swriter = new System.IO.StreamWriter(filepath);
+														x.Serialize(swriter, a);
+														
+														break;
 												}
 											} else if (a[Game.CurrentMenuSelection[j]] is Game.MenuSubmenu) {
 												// menu
