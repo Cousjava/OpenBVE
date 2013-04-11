@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../homepage.css" />
+		<link rel="icon" href="../common/favicon.png" />
+		<title>
+			Working with the black box
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../index.html"><img src="../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Working with the black box
+			</h1>
+			<div>
+				The black box allows developers or other users with special needs to log a series of train states in regular intervals for later analysis. The black box needs to be enabled in the <em>Options</em> menu. Once that is done, after driving a session, go to the <em>Review last game</em> menu and click on <em>Export</em> from the <em>Black box</em> section in order to create a CSV file containing the log.
+			</div>
+			<div>
+				Inside the CSV (comma-separated value) file, for each line, there is a series of values in this order:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							Time, Position, Speed, Acceleration, ReverserDriver, ReverserSafety, PowerDriver, PowerSafety, BrakeDriver, BrakeSafety, Event
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				<hr />
+				<strong>Time:</strong>
+				<br />
+				The current time in seconds (s) since midnight. This might exceed 86400 if passing day boundaries.
+			</div>
+			<div>
+				<hr />
+				<strong>Position:</strong>
+				<br />
+				The current position in meters (m) according to the route file used.
+			</div>
+			<div>
+				<hr />
+				<strong>Speed:</strong>
+				<br />
+				The current speed of the train in meters per second (m/s).
+			</div>
+			<div>
+				<hr />
+				<strong>Acceleration:</strong>
+				<br />
+				The current acceleration of the train in meters per second squared (m/s²).
+			</div>
+			<div>
+				<hr />
+				<strong>ReverserDriver</strong>, <strong>ReverserSafety</strong>: <br />
+				These are tokenized representations of the current reverser position as selected by the driver and as overridden by the safety system, respectively. The following tokens are used:
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							-1
+						</td>
+						<td>
+							The backward position
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							0
+						</td>
+						<td>
+							The neutral position
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							1
+						</td>
+						<td>
+							The forward position
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<hr />
+				<strong>PowerDriver</strong>, <strong>PowerSafety</strong>: <br />
+				These are tokenized representations of the current power lever position as selected by the driver and as overridden by the safety system, respectively. The following tokens are used:
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							0
+						</td>
+						<td>
+							Power notch zero
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							<em>positive integer</em>
+						</td>
+						<td>
+							The respective power notch
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<hr />
+				<strong>BrakeDriver</strong>, <strong>BrakeSafety</strong>: <br />
+				These are tokenized representations of the current brake lever position as selected by the driver and as overridden by the safety system, respectively. The following tokens are used:
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							0
+						</td>
+						<td>
+							Brake notch zero
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							<em>positive integer</em>
+						</td>
+						<td>
+							The respective brake notch
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							-1
+						</td>
+						<td>
+							The emergency brake (EMG)
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							-2
+						</td>
+						<td>
+							The hold brake
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							-3
+						</td>
+						<td>
+							Release (REL)
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							-4
+						</td>
+						<td>
+							Release (LAP)
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							-5
+						</td>
+						<td>
+							Release (SRV)
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				Please note that the automatic air brake makes use of values -1, -3, -4 and -5, while notched brakes use positive integers, 0, -1 and -2.
+			</div>
+			<div>
+				<hr />
+				<strong>Event:</strong>
+				<br />
+				This is a tokenized representation of special events. Currently, there are no such events defined.
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							0
+						</td>
+						<td>
+							No event
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

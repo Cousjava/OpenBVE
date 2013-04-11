@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../../homepage.css" />
+		<link rel="icon" href="../../common/favicon.png" />
+		<title>
+			Managed add-ons - For Add-on Developers
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../../index.html"><img src="../../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Managed add-ons - For Developers
+			</h1>
+			<div>
+				This page describes managed add-ons from a developer's point of view. You should have read the introduction <a href="../../use/managed.html">for users</a>
+				before reading on.
+			</div>
+			<ol class="contents">
+				<li>
+					<a href="#requirements">Requirements</a>
+				</li>
+				<li>
+					<a href="#introduction">Introduction</a>
+					<ol>
+						<li>
+							<a href="#typesofpackages">Types of packages</a>
+						</li>
+						<li>
+							<a href="#benefitsofpackages">Benefits of packages</a>
+						</li>
+						<li>
+							<a href="#propertiesofpackages">Properties of packages</a>
+						</li>
+					</ol>
+				</li>
+				<li>
+					<a href="#tutorials">Tutorials</a>
+				</li>
+			</ol>
+			<h2>
+				<a id="requirements">Requirements</a>
+			</h2>
+			<div>
+				There are some fundamental requirements that you need to fulfill in order to publish your add-on as managed content.
+			</div>
+			<div>
+				<strong>Author.</strong>
+				<br />
+				Only the original author of an add-on may upload it as managed content. It means that you are not allowed to upload existing legacy add-ons as managed content unless you created them.
+			</div>
+			<div>
+				<strong>Rights.</strong>
+				<br />
+				In order to ensure that add-ons are available forever, you must grant everyone irrevocable permission to make verbatim copies of your add-on. Of course you are free to grant additional rights under the terms of your choice.
+			</div>
+			<div>
+				<strong>Server.</strong>
+				<br />
+				All add-ons must be available on servers that allow direct access to the files with no restriction on user agent, referrer, geolocation or otherwise. This means that you cannot use most popular free hosts such as Rapidshare, MediaFire and the like because they do not allow direct downloads unless you pay them.
+			</div>
+			<div>
+				<strong>Playability.</strong>
+				<br />
+				All routes and trains released as managed content must be playable. As a general rule, this means that routes should have at least two stations and trains at least a cab. It also means that add-ons must not produce error messages and must not contain Windows-only train plugins.
+			</div>
+			<h2>
+				<a id="introduction">Introduction</a>
+			</h2>
+			<div>
+				Users do not have to worry about what is going on behind the scenes when they open the Get Add-ons menu and install add-ons onto their computers. You, however, need a solid understanding of how the system works if you want to publish your add-on this way.
+			</div>
+			<h3>
+				<a id="typesofpackages">Types of packages</a>
+			</h3>
+			<div>
+				To start with, managed content is organized into packages. There are four types of packages:
+			</div>
+			<div>
+				<strong>Routes.</strong>
+				<br />
+				These packages contain routes that can be selected in the main menu. They can also contain any other kind of data such as textures, objects or sounds.
+			</div>
+			<div>
+				<strong>Trains.</strong>
+				<br />
+				These packages contain trains that can be selected in the main menu. They can also contain any other kind of data such as textures, objects or sounds.
+			</div>
+			<div>
+				<strong>Libraries.</strong>
+				<br />
+				These packages do not contain anything that users can directly select in the main menu. Rather, they serve to contain any kind of data such as textures, objects or sounds in order to split add-ons into multiple packages.
+			</div>
+			<div>
+				<strong>Shared libraries.</strong>
+				<br />
+				These are the same as libraries, but are specifically intended to be re-used by other add-on developers. They come with the promise backward compatibility.
+			</div>
+			<h3>
+				<a id="benefitsofpackages">Benefits of packages</a>
+			</h3>
+			<div>
+				One of the ideas behind the organization into packages is that you can split your add-on into multiple packages. In fact, you must place routes and trains into different packages. But, you can further split your add-on if you want to. For example, you could create separate packages for your background images, for your rails, for your signals and for your buildings. The advantage is that you can later update any single package and users will not have to download just about everything anew, only the package that was updated.
+			</div>
+			<div>
+				This organization also allows you to re-use packages across different add-ons. For example, you could share your signals across different routes. The advantage is that users only have to download the signal package once, not again and again for every route, and that if you make an improvement to the signals, every route using the signals will automatically benefit from the change.
+			</div>
+			<h3>
+				<a id="propertiesofpackages">Properties of packages</a>
+			</h3>
+			<div>
+				Every package has a <strong>name</strong> and a <strong>version</strong> number, and every version of a package is identified by <strong>size</strong> and <strong>MD5</strong> to protect against accidental download corruption. This also means that whenever you want to update a package, you have to increment its version number, because once changing the package, the size and MD5 are inevitably going to change as well.
+			</div>
+			<div>
+				If you split your add-on into multiple packages, it means that your primary route or train package will depend on other library packages. This set of <strong>dependencies</strong> is another vital property of every package. Without the set of dependencies, openBVE could not automatically download the dependencies along with the primary package, meaning your add-on would not function properly.
+			</div>
+			<div>
+				Your add-on can also provide a set of <strong>suggestions</strong>. For example, if you distribute a route, you can suggest a suitable train. It is important to understand that the route would also work without the train, therefore the train is not a dependency.
+			</div>
+			<h2>
+				<a id="tutorials">Tutorials</a>
+			</h2>
+			<div>
+				These tutorials will explain everything you need to know in order to distribute your add-on as managed content.
+			</div>
+			<div>
+				<strong>Basic topics</strong>
+			</div>
+			<ul class="bullet-plain">
+				<li>
+					<a href="basics.html">The basics of creating and distributing add-ons</a>
+				</li>
+			</ul>
+			<div>
+				<strong>Advanced topics</strong>
+			</div>
+			<ul class="bullet-plain">
+				<li>
+					<a href="splitting.html">Splitting your add-on into multiple packages</a>
+				</li>
+				<li>
+					<a href="sharing.html">Creating reusable packages with shared libraries</a>
+				</li>
+				<li>
+					<a href="descriptor.html">The descriptor file and all available metadata</a>
+				</li>
+				<li>
+					<a href="mirroring.html">Uploading backups of packages to your own server</a>
+				</li>
+			</ul>
+			<div>
+				<strong>Further information</strong>
+			</div>
+			<ul class="bullet-plain">
+				<li>
+					<a href="licenses.html">Accepted licenses</a>
+				</li>
+				<li>
+					<a href="versions.html">Version numbers</a>
+				</li>
+				<li>
+					<a href="../../common/log.txt">The log file</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

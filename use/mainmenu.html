@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../homepage.css" />
+		<link rel="icon" href="../common/favicon.png" />
+		<title>
+			The main menu
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../index.html"><img src="../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				The main menu
+			</h1>
+			<div>
+				Here you can find an overview of the various sections of the main menu.
+			</div>
+			<ol class="contents">
+				<li>
+					<a href="#startnewgame">Start new game</a>
+					<ol>
+						<li>
+							<a href="#route">Route</a>
+						</li>
+						<li>
+							<a href="#train">Train</a>
+						</li>
+						<li>
+							<a href="#start">Start</a>
+						</li>
+					</ol>
+				</li>
+				<li>
+					<a href="#reviewlastgame">Review last game</a>
+				</li>
+				<li>
+					<a href="#customizecontrols">Customize controls</a>
+				</li>
+				<li>
+					<a href="#options">Options</a>
+					<ol>
+						<li>
+							<a href="#display">Display</a>
+						</li>
+						<li>
+							<a href="#interpolation">Interpolation</a>
+						</li>
+						<li>
+							<a href="#distanceeffects">Distance effects</a>
+						</li>
+						<li>
+							<a href="#detailofsimulation">Detail of simulation</a>
+						</li>
+						<li>
+							<a href="#sound">Sound</a>
+						</li>
+					</ol>
+				</li>
+			</ol>
+			<h2>
+				<a id="startnewgame">Start new game</a>
+			</h2>
+			<div>
+				<img src="../common/mainmenu_2.png" alt="Screenshot" />
+			</div>
+			<div>
+				Here, you can select a route and train for driving, along with the <a href="modes.html">mode of driving</a>.
+			</div>
+			<h3>
+				<a id="route">Route</a>
+			</h3>
+			<div>
+				The <em>Browse</em> tab allows you to browse for CSV or RW routes. These should be located somewhere in your <strong>Railway\Route folder</strong>. Via the <em>Recently used</em> tab, you can select among the 10 last used routes.
+			</div>
+			<div>
+				Once a route is selected, details will appear on the right, giving a description, map, gradient profile and settings. In the <em>Settings</em> tab, you should select the correct encoding used by the route file, or otherwise, the route might not be parsed correctly or <a href="http://en.wikipedia.org/wiki/Mojibake">mojibake</a>
+				might be displayed. There are three preset encodings to choose from, along with a list to choose the rest. Routes encoded in Unicode are usually automatically detected and require no further interaction.
+			</div>
+			<div>
+				The train associated with the route is automatically selected if found.
+			</div>
+			<h3>
+				<a id="train">Train</a>
+			</h3>
+			<div>
+				The <em>Browse</em> tab allows you to browse for train folders. These should be located somewhere in your <strong>Train</strong> folder. Via the <em>Recently used</em> tab, you can select among the 10 last used trains.
+			</div>
+			<div>
+				Once a train is selected, details will appear on the right, giving a description and settings. In the <em>Settings</em> tab, you should select the correct encoding used by the train files, or otherwise, <a href="http://en.wikipedia.org/wiki/Mojibake">mojibake</a>
+				might be displayed in the descriptions. There are three preset encodings to choose from, along with a list to choose the rest. Trains encoded in Unicode are usually automatically detected and require no further interaction.
+			</div>
+			<h3>
+				<a id="start">Start</a>
+			</h3>
+			<div>
+				Select the mode of driving, then click on <em>Start</em> to finally start.
+			</div>
+			<h2>
+				<a id="reviewlastgame">Review last game</a>
+			</h2>
+			<div>
+				<em>Documentation for this page is not available.</em>
+			</div>
+			<h2>
+				<a id="customizecontrols">Customize controls</a>
+			</h2>
+			<div>
+				<img src="../common/mainmenu_3.png" alt="Screenshot" />
+			</div>
+			<div>
+				Here, you can map any control to any of the supported peripherals: the keyboard, and joysticks. Click on any control in order to edit it. You can also add more controls, e.g. in the case you want a certain functionality to be both available on keyboard and joystick. Please note that for joystick support, this must be enabled in the <em>Options</em> page.
+			</div>
+			<div>
+				There are three types of commands:
+			</div>
+			<div>
+				<dl class="definition-plain">
+					<dt>
+						Digital
+					</dt>
+					<dd>
+						This is a simple yes/no command. Press and hold a key or a joystick button, then release again. If you map a <em>Digital</em> command to a joystick axis, you need to move the axis by 2/3 to achieve the <em>on</em> state, then move back to 1/3 to achieve the <em>off</em> state again.
+					</dd>
+					<dt>
+						Analog (half axis)
+					</dt>
+					<dd>
+						This is a command with a continuous range of states. If you map this to the keyboard, a joystick button or joystick hat, you will get either 0% or 100% of the range, just as with <em>Digital</em> commands. If you map this to a joystick axis, only half of the axis will be sensitive to the command, meaning releasing the axis fully gives 0%. This is mostly suited for the stick.
+					</dd>
+					<dt>
+						Analog (full axis)
+					</dt>
+					<dd>
+						This is a command with a continuous range of states. If you map this to the keyboard, a joystick button or joystick hat, you will get either 0% or 100% of the range, just as with <em>Digital</em> commands. If you map this to a joystick axis, the full axis will be sensitive to the command, meaning that 0% will be one extreme of the axis, and 100% the other extreme. This is mostly suited for throttles.
+					</dd>
+				</dl> Examples:
+			</div>
+			<div>
+				Map POWER_INCREASE (digital) to the lower part of a gamepad's vertical axis, and POWER_DECREASE (digital) to the upper part of the vertical axis. Pressing up or down will decrease or increase by one power notch for every time you press.
+			</div>
+			<div>
+				Map POWER_HALFAXIS (analog half-axis) to the lower part of a stick's vertical axis, and BRAKE_HALFAXIS (analog half-axis) to the upper part. Power can be continuously controlled on the lower part of the axis, and the brake on the upper part.
+			</div>
+			<div>
+				Map POWER_FULLAXIS (analog full-axis) to the lower part of a throttle. Full power will be at the lower extreme of the throttle, and zero power at the upper extreme. Center corresponds to 50% power here.
+			</div>
+			<h2>
+				<a id="options">Options</a>
+			</h2>
+			<div>
+				<img src="../common/mainmenu_4.png" alt="Screenshot" />
+			</div>
+			<div>
+				You can select the interface language, display modes, quality settings and some other settings here.
+			</div>
+			<h3>
+				<a id="display">Display</a>
+			</h3>
+			<div>
+				While you can select any display resolution for window mode, make sure that any resolution you enter for fullscreen mode is supported by your graphics card. Ideally, you should select a resolution that matches the aspect ratio of your monitor.
+			</div>
+			<h3>
+				<a id="interpolation">Interpolation</a>
+			</h3>
+			<div>
+				The interpolation modes are illustrated <a href="../about/quality.html">here</a>. Ideally, you should select anisotropic filtering for best quality, but might be forced to use a compromise when you experience low performance.
+			</div>
+			<div>
+				Please note that for the first time you run openBVE, the program does not know yet what the maximum level of anisotropic filtering is which the hardware supports. In this case, the textbox <em>Level of anisotropic filtering</em> will read 0, and openBVE will simply use the maximum setting available. Subsequently, you can choose any level here to make a trade-off between performance (low values) and quality (high values).
+			</div>
+			<div>
+				There are two transparency options available: <em>Sharp</em> and <em>Smooth</em>. These only apply for a mipmapping mode or for anisotropic filtering, and are illustrated in the following:
+			</div>
+			<table class="table-box-v">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							<img src="../common/transparency_1.png" alt="Screenshot" />
+						</td>
+						<td>
+							<img src="../common/transparency_2.png" alt="Screenshot" />
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							Sharp
+						</td>
+						<td>
+							Smooth
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				On textures with small transparent regions, the <em>Sharp</em> mode (illustrated left) creates a crispy look, and the texture might be cut off in the distant. With <em>Smooth</em> (illustrated right), these transparent regions will appear very smoothly filtered, also in the distant, however, this is at the expense of some performance.
+			</div>
+			<h3>
+				<a id="distanceeffects">Distance effects</a>
+			</h3>
+			<div>
+				You can set the viewing distance here. At least 600 meters is recommended, although if you experience very low performance, you can also reduce this value.
+			</div>
+			<div>
+				Additionally, you can enable motion blur to get a better feeling for the speed you drive at. This demands some performance and is usually only recommended if you can get at least 30 to 40 frames per second even with motion blur enabled. Otherwise, the effect might be counter-productive and could manifest as stutter more than it does as blur. This is an example of motion blur applied at a high speed:
+			</div>
+			<div>
+				<img src="../common/motionblur.jpg" alt="Screenshot" />
+			</div>
+			<h3>
+				<a id="detailofsimulation">Detail of simulation</a>
+			</h3>
+			<div>
+				You can enable or disable toppling (too high speed in curves lets the train leave off the rail), collisions (with other trains or buffer stops) and derailments here (due to toppling or collisions).
+			</div>
+			<div>
+				The black box allows you to log the status of the train in regular intervals. This is mainly intended for developers as a debugging tool or for people who want to create a more detailed analysis of their driving performance. Please see the page about <a href="blackbox.html">the black box</a>
+				for more information.
+			</div>
+			<h3>
+				<a id="sound">Sound</a>
+			</h3>
+			<div>
+				The effective range of sounds controls at which point distant sounds are cut off. A higher effective range allows you to hear more sounds in the distance, but will usually also lead to more sounds playing at the same time.
+			</div>
+			<div>
+				The amount of sounds which can be played simultaneously is hardware-dependent. You can set the number of allowed sounds here. If too many sounds are playing, distant sounds will be automatically faded away until the number of currently playing sounds does not exceed the set value. Please don't confuse this setting with the number of sounds that <em>can</em> be played simultaneously (that depends on the hardware) - it represents the number of sounds that <em>are allowed</em> to be playing to keep the number of sounds hardware-compliant.
+			</div>
+		</div>
+	</body>
+</html>

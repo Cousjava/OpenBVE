@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../../homepage.css" />
+		<link rel="icon" href="../../common/favicon.png" />
+		<title>
+			Managed add-ons - Splitting your add-on into multiple packages
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../../index.html"><img src="../../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Managed add-ons - Splitting your add-on into multiple packages
+			</h1>
+			<div>
+				In <a href="basics.html">The basics of creating and distributing add-ons</a>, you have learned how to create a self-contained add-on. In this tutorial, you will learn how to split your add-on into multiple packages.
+			</div>
+			<div>
+				There are lots of applications for splitting add-ons into multiple packages, such as re-use of objects across multiple routes or re-use of plugins across multiple trains. Also, if you want to make only a small update, you only need to re-upload (and users only have to re-download) the package that was actually changed.
+			</div>
+			<div>
+				For a route or train, you will usually want to create one route or train package, and one or several other <strong>library</strong> packages. A library package is simply a collection of textures, objects, sounds, or really any other kind of data, that you can reference in your primary route or train package (and of course in other library packages as well).
+			</div>
+			<div>
+				In the following, you will learn two important things: how to reference files stored in other packages, and how to set up the dependencies correctly.
+			</div>
+			<ol class="contents">
+				<li>
+					<a href="#referencingfilescorrectly">Referencing files correctly</a>
+					<ol>
+						<li>
+							<a href="#becarefulwithcsvrwroutes">Be careful with CSV/RW routes</a>
+						</li>
+					</ol>
+				</li>
+				<li>
+					<a href="#settingupdependenciescorrectly">Setting up dependencies correctly</a>
+				</li>
+			</ol>
+			<h2>
+				<a id="referencingfilescorrectly">Referencing files correctly</a>
+			</h2>
+			<div>
+				Let us suppose you want to create a series of trains that all share common sound files. Instead of copying the same set of sounds to all your trains, it would be easier to just create a single library package that contains the sounds and then to reference those sounds from your train package.
+			</div>
+			<div>
+				Normally, a sound.cfg could contain the following lines:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[Flange] <br />
+							0 = Flange0.wav
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				Usually, file references are relative to the directory where the containing file is stored (CSV/RW routes are exceptions). In this case, the Flange0.wav would be looked for in the same directory as the sound.cfg. If you had your sounds in a subfolder called <em>Sounds</em>, the lines would change to this:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[Flange] <br />
+							0 = Sounds\Flange0.wav
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				And if you had the Flange0.wav stored in the parent directory instead of in a subdirectory, the lines would change to this:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[Flange] <br />
+							0 = ..\Flange0.wav
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				One important thing to understand is that you must <span style="color: red;"><strong>never</strong></span>
+				reference files that are outside of the package via such parent references. The only proper way is to reference other packages <strong>by name</strong> in the following way:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[Flange] <br />
+							0 = $my-sound-package\Flange0.wav
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				Any reference that starts with the $-character marks a reference to the <strong>root directory</strong> of the package of the name that follows. It is possible for users to have some packages in one location and others elsewhere. Referencing packages by name ensures that packages can be found regardless of where they are stored on the hard drive. From here, it of course depends on the internal structure of the package you reference. If the Flange0.wav were in a subfolder called <em>Sounds</em>, the lines would change to this:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[Flange] <br />
+							0 = $my-sound-package\Sounds\Flange0.wav
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<h3>
+				<a id="becarefulwithcsvrwroutes">Be careful with CSV/RW routes</a>
+			</h3>
+			<div>
+				Contrary to all other file formats used by openBVE, the CSV and RW route files treat path references a little differently. Fact is that objects and sounds are not relative to the route file itself, but to the Object and Sound folder. For as long as you do not include $-references, you must reproduce the Railway (Route, Object, Sound) structure in your package.
+			</div>
+			<div>
+				However, as soon as you reference a package by name using $-references, paths are always relative to the <strong>root directory</strong> of that package. Suppose we had a package called <em>my-route</em> that contains the following CSV route file:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							With Structure <br />
+							&nbsp;&nbsp;&nbsp;&nbsp;.Rail(0) straight.csv <br />
+							&nbsp;&nbsp;&nbsp;&nbsp;.Rail(1) $my-rails\curve.csv
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				The file <em>straight.csv</em> is relative to the Object folder. This means that the <em>my-route</em> package must have the Railway (Route, Object, Sound) structure, and the <em>straight.csv</em> file must be located in the Object folder thereof. However, the <em>curve.csv</em> file is looked for directly in the root directory of the package called <em>my-rails</em>. There is no Object folder in there.
+			</div>
+			<div>
+				Basically, this means that you can also complete do away with the classic Railway (Route, Object, Sound) structure <strong>if all</strong> your files are explicitly $-referenced to some package.
+			</div>
+			<h2>
+				<a id="settingupdependenciescorrectly">Setting up dependencies correctly</a>
+			</h2>
+			<div>
+				Once you split your add-on into multiple packages, the primary route or train package will <strong>depend</strong> on all of the packages it references. These packages <strong>must</strong> be mentioned in your descriptor file by name and version.
+			</div>
+			<div>
+				In the preceding example, we saw that the <em>my-route</em> package referenced files from the <em>my-rails</em> package. This means that you must include the following line in the descriptor for the <em>my-route</em> package:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[package] <br />
+							name = my-route <br />
+							version = 4.0 <br />
+							dependencies = my-rails[1.1]
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				If you have multiple dependencies, separate them by comma. You can see that the version number of the dependent package must be also specified. This is always interpreted as <strong>this or any later</strong> version.
+			</div>
+			<div>
+				Please note that users cannot have multiple versions of a package at the same time. This means that if you make a change to your <em>my-rails</em> package, then do so in a way that your <em>my-route</em> add-on still functions properly. If you update the <em>my-route</em> package and you made changes to <em>my-rails</em> in the meantime that <em>my-route</em> explicitly depends on, then mention this in your descriptor accordingly:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[package] <br />
+							name = my-route <br />
+							version = 5.0 <br />
+							dependencies = my-rails[1.2]
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				Be careful with library packages that $-reference other library packages. Suppose route R references library A, and library A references library B, then you must mention B as a dependency of A and A as a dependency of R (not B as a dependency of R).
+			</div>
+			<div>
+				This is basically it. You have now learned how to split your add-on into mutiple packages, where library packages are nothing more than a pile of data files that you can use somewhere in your route or train add-ons.
+			</div>
+			<h2>
+				Advanced topics
+			</h2>
+			<div>
+				You can also design packages specifically intended for other authors to reference in their add-ons. Consider creating a signal package that others re-use in their routes. Whenever you make an improvement to your signals, every route using them will automatically benefit. Of course, you must consider backward compatibility before braking someone else's add-on through one of your changes. If you are interested, continue reading about shared libraries, or head back to the index page for a list of all available tutorials on managed add-ons.
+			</div>
+			<ul class="bullet-plain">
+				<li>
+					<a href="sharing.html">Creating reusable packages with shared libraries</a>
+				</li>
+				<li>
+					<a href="index.html">Back to the index page</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

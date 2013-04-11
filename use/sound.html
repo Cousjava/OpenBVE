@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../homepage.css" />
+		<link rel="icon" href="../common/favicon.png" />
+		<title>
+			Sound configuration
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../index.html"><img src="../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Sound configuration
+			</h1>
+			<div>
+				openBVE can make use of stereo speakers, 5.1 sound systems, 7.1 surround systems, and so on. In order for sounds to be played correctly, you should make sure that the amount of speakers that are actually connected to your computer is properly set up. An improper configuration can lead to sounds being generated for speakers that do not exist. In-game, you might then be unable to hear sounds emerging from certain angles.
+			</div>
+			<div>
+				There are usually two places to look for this configuration. The first one is an overall operating system setting, while the second one is a setting specific to the sound card.
+			</div>
+			<ol class="contents">
+				<li>
+					<a href="#operatingsystemsettings">Operating system settings</a>
+					<ol>
+						<li>
+							<a href="#windowsspecific">Windows-specific</a>
+						</li>
+					</ol>
+				</li>
+				<li>
+					<a href="#soundcardsettingexample">Sound card setting (example)</a>
+				</li>
+				<li>
+					<a href="#testthesoundconfiguration">Test the sound configuration</a>
+				</li>
+				<li>
+					<a href="#troubleshooting">Troubleshooting</a>
+					<ol>
+						<li>
+							<a href="#windowsspecific">Windows-specific</a>
+						</li>
+					</ol>
+				</li>
+			</ol>
+			<h2>
+				<a id="operatingsystemsettings">Operating system settings</a>
+			</h2>
+			<h3>
+				<a id="windowsspecific">Windows-specific</a>
+			</h3>
+			<div>
+				On Windows XP, open Control Panel (e.g. Start Menu &gt; Settings &gt; Control Panel), and then follow these directions:
+			</div>
+			<table>
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td colspan="2">
+							<img src="../common/sound_1.png" alt="Illustration" />
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							<img src="../common/sound_2.png" alt="Illustration" />
+						</td>
+						<td>
+							<img src="../common/sound_3.png" alt="Illustration" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				Here, set the amount of speakers that are actually connected to your computer.
+			</div>
+			<h2>
+				<a id="soundcardsettingexample">Sound card setting (example)</a>
+			</h2>
+			<div>
+				If your sound card provides its own configuration dialog, open it and try to find a setting for speaker configuration, for example:
+			</div>
+			<div>
+				<img src="../common/sound_4.png" alt="Illustration" />
+			</div>
+			<div>
+				Again, set the amount of speakers that are actually connected to your computer.
+			</div>
+			<h2>
+				<a id="testthesoundconfiguration">Test the sound configuration</a>
+			</h2>
+			<div>
+				In order to test whether your sound configuration is correct, try these things: In-cab, deactivate camera restriction (by default CTRL+R), then pan the camera around by 360 degrees (by default LEFT or RIGHT arrow keys). Switch to an exterior view and pan the camera around by 360 degrees there, too.
+			</div>
+			<div>
+				If you notice a silence at particular angles, your computer is likely configured to use more speakers than are actually connected.
+			</div>
+			<div>
+				If you notice that some speakers do not emit any sound, or that two speakers output the same sound, your computer is likely configured to use less speakers than are actually connected.
+			</div>
+			<div>
+				In these cases, follow the above steps in order to set up the sound correctly.
+			</div>
+			<h2>
+				<a id="troubleshooting">Troubleshooting</a>
+			</h2>
+			<h3>
+				<a id="windowsspecific">Windows-specific</a>
+			</h3>
+			<div>
+				If you experience low quality sound, or abrupt starting or stopping of sounds, try disabling hardware audio acceleration via Control Panel:
+			</div>
+			<div>
+				<img src="../common/sound_5.png" alt="Illustration" />
+			</div>
+			<div>
+				On Windows XP, open <strong>Control Panel</strong>, select <strong>Sounds and Audio Devices</strong>, click <strong>Advanced...</strong> in the <strong>Speaker settings</strong> section, and then select the left-most position of the <strong>Hardware acceleration</strong> slider.
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../homepage.css" />
+		<link rel="icon" href="../common/favicon.png" />
+		<title>
+			Troubleshooting
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../index.html"><img src="../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Troubleshooting
+			</h1>
+			<div>
+				If you experience problems running openBVE, try what is listed on this page before asking for support on the forum.
+			</div>
+			<h2>
+				<a id="general">General</a>
+			</h2>
+			<div>
+				The following applies to all operating systems.
+			</div>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							After loading a route, the train is shown against a black background and a large number of files is reported as missing
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							openBVE requires that legacy route and train files are organized in a certain way. Please see <a href="folders.html">The folder structure for routes and trains</a>.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							The game exhibits low performance (i.e. produces few frames per second).
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							openBVE uses OpenGL for 3D graphics, which is implemented in the graphics driver. Without adequate support for OpenGL by the graphics driver, openBVE might run in software mode without hardware acceleration, or with reduced performance. If you have never updated your graphics driver before, this would be a good time to try a newer version, or if you are using the latest version, to try an older version. You should never rely on the default drivers that ship with Microsoft Windows. They generally produce poor performance. In order to download drivers, please see the website of the chipset manufacturer (usually <a href="http://www.nvidia.com/Download/index.aspx?lang=en-us">NVIDIA</a>, <a href="http://support.amd.com/us/gpudownload/Pages/index.aspx">ATI</a>
+							or <a href="http://downloadcenter.intel.com/">Intel</a>
+							). Also make sure performance is not artificially reduced by graphics driver settings (such as ATI PowerPlay).
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>
+				<a id="windowsspecific">Windows-specific</a>
+			</h2>
+			<div>
+				The following only applies to the Windows operating system.
+			</div>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							When starting openBVE, a message of the form "openBVE has encountered a problem and needs to close" appears.
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							Make sure that you followed the <a href="download_windows.html">installation instructions</a>. You probably skipped a step or did not copy the files into the correct places.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							When starting openBVE, a message of the form "The application failed to initialize properly" appears.
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							Make sure that you followed the <a href="download_windows.html">installation instructions</a>. You probably did not install the .NET Framework 2.0 or higher.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							When loading a route or train, an error of the form "An attempt was made to load a program with an incorrect format." is reported.
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							If you are on 64-bit Windows, the most likely reason for this problem is that you have 64-bit versions of some of the external dependencies even though openBVE currently requires 32-bit files. Please follow the download instructions again carefully with a clean install of openBVE in a fresh folder. If you are using 32-bit Windows, or the aforementioned solution did not help on 64-bit Windows, please report all details on the forum.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							After loading a route and train, the message "Attempted to read or write protected memory. This is often an indication that other memory is corrupt" appears.
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							It has been reported that some older ATI cards can produce this message with the latest Catalyst drivers. Try using an older version of the driver in this case. Also, some trains come with plugins which contain executable code that might be buggy and can produce this message. Try using different trains and see if the problem still occurs.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							The game crashes with a Blue Screen or just resets the computer.
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							Blue Screens are almost always caused by faulty device drivers. Try updating your graphics driver, sound driver, peripherals drivers - or try older versions if available in case you are already using the most recent versions.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							The game hangs or freezes somewhere after loading a route.
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							Try disabling hardware-accelerated sound in Control Panel - see the Troubleshooting section on the <a href="sound.html">Sound configuration</a>
+							page for this.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table-grid">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<thead>
+					<tr class="even">
+						<th>
+							Sound plays with low quality, stutters, lags, or starts or stops abruptly.
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even">
+						<td>
+							Try disabling hardware-accelerated sound in Control Panel - see the Troubleshooting section on the <a href="sound.html">Sound configuration</a>
+							page for this.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

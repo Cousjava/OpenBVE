@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../homepage.css" />
+		<link rel="icon" href="../common/favicon.png" />
+		<title>
+			Organization of files and folders
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../index.html"><img src="../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Organization of files and folders
+			</h1>
+			<div>
+				This page describes how openBVE stores its program data (e.g. language files) and user data (e.g. settings).
+			</div>
+			<div>
+				Without further configuration, the default model is used. If you want a different organization, please see below for methods of customization.
+			</div>
+			<h2>
+				<a id="defaultmodel">Default model</a>
+			</h2>
+			<div>
+				By default, all application data (e.g. images) is stored in the install directory. This is the folder where OpenBve.exe is located.
+			</div>
+			<div>
+				All userdata (e.g. settings) is stored in a folder specific to the operating system:
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							Windows XP
+						</td>
+						<td>
+							C:\Documents and Settings\USER\Application Data\openBVE
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							Windows Vista/7
+						</td>
+						<td>
+							C:\Users\USER\AppData\Roaming\OpenBVE
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							Linux / Mac OS X
+						</td>
+						<td>
+							~/.config/openBVE
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				The default model then stores various items in the following locations:
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							Application data
+						</td>
+						<td>
+							INSTALLDIRECTORY/Data
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							Settings
+						</td>
+						<td>
+							USERDATA/Settings
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							Managed content
+						</td>
+						<td>
+							USERDATA/ManagedContent
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							Initial Route folder
+						</td>
+						<td>
+							USERDATA/LegacyContent/Railway/Route
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							Initial Train folder
+						</td>
+						<td>
+							USERDATA/LegacyContent/Train
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>
+				<a id="customizedmodel">Customized model</a>
+			</h2>
+			<div>
+				If you want to use a different file organization than the default model presented above, you have to create a configuration file. You can use <em>either one</em> of the following ways in order to make openBVE recognize this file:
+			</div>
+			<ul class="bullet-plain">
+				<li>
+					Place the file <strong>filesystem.cfg</strong> inside <strong>INSTALLDIRECTORY/UserData/Settings</strong>, where <strong>INSTALLDIRECTORY</strong> is the folder where OpenBve.exe is located.
+				</li>
+				<li>
+					Via the command line, include the parameter <strong>/filesystem=CONFIGFILE</strong>, where <strong>CONFIGFILE</strong> is the fully-qualified path to the configuration file.
+				</li>
+			</ul>
+			<div>
+				The configuration file has the following format:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							Data = FOLDER <br />
+							ManagedContent = FOLDER1, FOLDER2, FOLDER3, ... <br />
+							Settings = FOLDER <br />
+							InitialRoute = FOLDER <br />
+							InitialTrain = FOLDER <br />
+							RestartProcess = FILE <br />
+							RestartArguments = ARGUMENTS
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				All <strong>FOLDER</strong> and <strong>FILE</strong> must be absolute paths and can contain the following symbolic values:
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							$[AssemblyFile]
+						</td>
+						<td>
+							The path to the executing assembly (OpenBve.exe)
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							$[AssemblyFolder]
+						</td>
+						<td>
+							The folder where the executing assembly is stored
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							$[ApplicationData]
+						</td>
+						<td>
+							The OS-specific folder where user-specific application data is stored
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							$[CommonApplicationData]
+						</td>
+						<td>
+							The OS-specific folder where all-user application data is stored
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							$[Personal]
+						</td>
+						<td>
+							The OS-specific home directory of the current user
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<strong>Data</strong> is the folder where static application data is stored. This contains the folders Compatiblity, Flags, and Languages, among others.
+			</div>
+			<div>
+				<strong>ManagedContent</strong> is the folder where managed content is stored. You can also specify multiple folders separated by comma.
+			</div>
+			<div>
+				<strong>Settings</strong> is the folder where user-specific settings are stored. This includes the files settings.cfg, controls.cfg and log.txt, among others.
+			</div>
+			<div>
+				<strong>InitialRoute</strong> is the default folder where the main menu browses for legacy routes. Once the user browses to a different folder, this is stored in the settings.cfg.
+			</div>
+			<div>
+				<strong>InitialTrain</strong> is the default folder where the main menu browses for legacy trains. Once the user browses to a different folder, this is stored in the settings.cfg.
+			</div>
+			<div>
+				<strong>RestartProcess</strong> is the path to the file that is executed if the user selects to return to the main menu.
+			</div>
+			<div>
+				<strong>RestartArguments</strong> are the command-line arguments that are passed to the process that is executed when the user selects to return to the main menu.
+			</div>
+			<div>
+				For managed content, you can specify multiple lookup directories. In this case, openBVE will always install new packages to the first directory specified, but will find packages regardless of where they are stored (meaning, you can move individual packages from one directory to another manually).
+			</div>
+			<h3>
+				<a id="examples">Examples</a>
+			</h3>
+			<div>
+				A configuration file that describes the default model:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							Data = $[AssemblyFolder]/Data <br />
+							ManagedContent = $[ApplicationData]/openBVE/ManagedContent <br />
+							Settings = $[ApplicationData]/openBVE/Settings <br />
+							InitialRoute = $[ApplicationData]/openBVE/LegacyContent/Railway/Route <br />
+							InitialTrain = $[ApplicationData]/openBVE/LegacyContent/Train <br />
+							RestartProcess = $[AssemblyFile] <br />
+							RestartArguments =
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				A configuration file that stores all userdata in the install directory:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							Data = $[AssemblyFolder]/Data <br />
+							ManagedContent = $[AssemblyFolder]/UserData/ManagedContent <br />
+							Settings = $[AssemblyFolder]/UserData/Settings <br />
+							InitialRoute = $[AssemblyFolder]/UserData/LegacyContent/Railway/Route <br />
+							InitialTrain = $[AssemblyFolder]/UserData/LegacyContent/Train <br />
+							RestartProcess = $[AssemblyFile] <br />
+							RestartArguments =
+						</tt>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

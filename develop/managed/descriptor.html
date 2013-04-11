@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../../homepage.css" />
+		<link rel="icon" href="../../common/favicon.png" />
+		<title>
+			Managed add-ons - The descriptor file
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../../index.html"><img src="../../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Managed add-ons - The descriptor file
+			</h1>
+			<div>
+				The descriptor contains information on all packages that you offer on your server. You can change the file at any time to introduce new packages, newer versions of existing packages or to update metadata.
+			</div>
+			<div>
+				All you have to do is to submit the URL to the descriptor <strong>once</strong> to the openBVE project. After that, it will be crawled automatically at least once every 48 hours in order to collect any changes you made to it.
+			</div>
+			<div>
+				Please find a list of things you can do in your descriptor below, in particular a list of all available metadata
+			</div>
+			<h2>
+				<a id="thepackagesection">The [package] section</a>
+			</h2>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							<strong>[package]</strong>
+						</td>
+						<td>
+							<strong>This starts a specific version of a package.</strong>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							name
+						</td>
+						<td>
+							The name of the package. Names must be unique and sufficiently self-descriptive. A simple <em>A</em> is not enough and will be rejected.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							version
+						</td>
+						<td>
+							The version number of the package. Please find out more about version numbers <a href="versions.html">here</a>.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							size
+						</td>
+						<td>
+							The exact size of the archive file in bytes.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							md5
+						</td>
+						<td>
+							The MD5 of the archive. Considering using <a href="../../common/md5.zip">this tool</a>
+							if you do not know how to compute the MD5.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							sources
+						</td>
+						<td>
+							A comma-separated list of URLs where the package can be downloaded from. These must be direct links.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							dependencies
+						</td>
+						<td>
+							A comma-separated list of dependencies. A dependency has the form <span style="color: gray;"><span style="font-family:monospace;">package[version]</span></span>. This means your package will depend on the specified package of the specified version <strong>or any later version</strong>.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							suggestions
+						</td>
+						<td>
+							A comma-separated list of suggestions. A suggestion has the form <span style="color: gray;"><span style="font-family:monospace;">package[version]</span></span>. This means your package will suggest the specified package of the specified version <strong>or any later version</strong>.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							entry
+						</td>
+						<td>
+							The subdirectory within the package where openBVE starts looking for routes or trains. In case your route uses the Railway (Route, Object, Sound) structure, you must enter <em>Railway\Route</em>.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							type
+						</td>
+						<td>
+							The type of the package. Must be either <strong>route</strong>, <strong>train</strong>, <strong>library</strong> or <strong>shared library</strong>.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							author
+						</td>
+						<td>
+							The name of the author who created the package.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							caption[<span style="color: gray;">code</span>]
+						</td>
+						<td>
+							A short caption that appears in list boxes.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							description[<span style="color: gray;">code</span>]
+						</td>
+						<td>
+							A more detailed description of the package.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							country[<span style="color: gray;">code</span>]
+						</td>
+						<td>
+							The country featured in the route, or to which the train can be attributed to. Should be left out if the route or train cannot be attributed to any particular country.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							city[<span style="color: gray;">code</span>]
+						</td>
+						<td>
+							The city featured in the route, or to which the train can be attributed to. Should be left out if the add-on cannot be attributed to any particular city.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							operator[<span style="color: gray;">code</span>]
+						</td>
+						<td>
+							The operator that runs the route or train. Should be left out if the route or train cannot be attributed to any particular operator.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							fictional
+						</td>
+						<td>
+							Should be set to <strong>true</strong> for fictional routes and trains.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							screenshots
+						</td>
+						<td>
+							A comma-separated list of URLs where screenshots of the add-on are stored. You should also provide thumbnails.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							thumbnails
+						</td>
+						<td>
+							A comma-separated list of URLs where thumbnails are stored (in the same order as screenshots). Thumbnails are smaller versions of screenshots for faster loading.
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							links
+						</td>
+						<td>
+							A comma-separated list of URLs that provide links to manuals or the homepage of the add-on, and so on. You should also provide labels.
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							labels[<span style="color: gray;">code</span>]
+						</td>
+						<td>
+							A comma-separated list of labels for the links (in the same order as links).
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				Please note that none of the text fields or screenshots may include copyright notices.
+			</div>
+			<h3>
+				<a id="languagecodes">Language codes</a>
+			</h3>
+			<div>
+				Some metadata such as country, city and description can be offered in multiple languages. You do so by including a language code in brackets, for example:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							country[en-US] = Japan <br />
+							country[ja-JP] = 日本
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				Please always include an English version of the metadata. For a full list of codes, see <a href="http://www.lingoes.net/en/translator/langcode.htm">here</a>.
+			</div>
+			<h2>
+				<a id="thelinkssection">The [links] section</a>
+			</h2>
+			<div>
+				If you want to organize yourself with others in your own communities, it is also possible that you include a <strong>[links]</strong> section. Instead of having to submit their descriptors to the openBVE project directly, other developers can also submit them to you. You then list those URLs in the [links] section, each URL on a separate line. Once the crawler reads your descriptor, all descriptors you link to will be automatically added to the crawler's database.
+			</div>
+			<h2>
+				Navigation
+			</h2>
+			<ul class="bullet-plain">
+				<li>
+					<a href="index.html">Back to the index page</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

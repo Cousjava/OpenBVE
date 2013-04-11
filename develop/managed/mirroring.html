@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../../homepage.css" />
+		<link rel="icon" href="../../common/favicon.png" />
+		<title>
+			Managed add-ons - Uploading backups of packages to your own server
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../../index.html"><img src="../../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Managed add-ons - Uploading backups of packages to your own server
+			</h1>
+			<div>
+				You can help keeping add-ons up and running by uploading backup copies to your own server. All add-ons released as managed content come with a license that allows you to make verbatim copies under no conditions.
+			</div>
+			<div>
+				In order to make a backup of an add-on, navigate to your managed content directory, pick the package you want to create a backup of, <a href="basics.html#packaging">package it correctly</a>, then <a href="basics.html#thedescriptor">add a [package] section to your descriptor</a>, and finally upload everything to your server.
+			</div>
+			<div>
+				Actually, you only need the following five entries for each [package] section in your descriptor if you want to publish a backup of an already existing package:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[package] <br />
+							name = animated-object-demo-route <br />
+							version = 1.0 <br />
+							size = 1069556 <br />
+							md5 = 4C8D3D814F4A68E4CD7A9C5F784B817A <br />
+							sources = http://trainsimframework.org/common/animated-object-demo-route.tar.gz <br />
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				In fact, any additional metadata will be ignored (same-origin policy). In order to find out the exact package name and version of the package you are about to make a backup of, inspect the package.cfg in the root directory of the package.
+			</div>
+			<div>
+				When you repackage an add-on, it will inevitably end up with a different file size and MD5 then the original. This is not a problem for as long as the content of your tarball matches the original on a file-by-file basis, meaning no files may be added, changed or removed. The only exception is the package.cfg file - its presence is ignored. Please make sure to denote the correct file size and MD5 of your tarball - you can also use <a href="../../common/md5.zip">this tool</a>
+				in order to create the size and md5 lines automatically.
+			</div>
+			<div>
+				Once you have uploaded the tarball and the descriptor to your server, please submit the URL to your descriptor to the openBVE project:
+			</div>
+			<div>
+				<img src="../../common/mail.png" alt="E-mail address is hidden in this image" />
+			</div>
+			<div>
+				You can at any time add more [package] sections to your descriptor - any change you make will be picked up <strong>automatically</strong> by a crawler, meaning you have to submit your descriptor only once, not every time you make a change.
+			</div>
+		</div>
+	</body>
+</html>

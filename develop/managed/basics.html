@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../../homepage.css" />
+		<link rel="icon" href="../../common/favicon.png" />
+		<title>
+			Managed add-ons - The basics of creating and distributing add-ons
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../../index.html"><img src="../../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Managed add-ons - The basics of creating and distributing add-ons
+			</h1>
+			<div>
+				Whether you already have created an add-on and want to port it to managed content, or if you want to create a new add-on as managed content from the start, this tutorial will show you the basics you need to know.
+			</div>
+			<ol class="contents">
+				<li>
+					<a href="#wherearemanagedaddonsstored">Where are managed add-ons stored?</a>
+				</li>
+				<li>
+					<a href="#creatingyourfirstaddon">Creating your first add-on</a>
+					<ol>
+						<li>
+							<a href="#routes">Routes</a>
+						</li>
+						<li>
+							<a href="#trains">Trains</a>
+						</li>
+					</ol>
+				</li>
+				<li>
+					<a href="#testingyourfirstaddonlocally">Testing your first add-on locally</a>
+				</li>
+				<li>
+					<a href="#distributingyourfirstaddon">Distributing your first add-on</a>
+					<ol>
+						<li>
+							<a href="#licensing">Licensing</a>
+						</li>
+						<li>
+							<a href="#packaging">Packaging</a>
+						</li>
+						<li>
+							<a href="#thedescriptor">The descriptor</a>
+						</li>
+					</ol>
+				</li>
+				<li>
+					<a href="#testingyourfirstaddonagain">Testing your first add-on again</a>
+				</li>
+			</ol>
+			<h2>
+				<a id="wherearemanagedaddonsstored">Where are managed add-ons stored?</a>
+			</h2>
+			<div>
+				First of all, you should find out where managed add-ons are stored. By default, openBVE stores managed add-ons in an operating-system-specific directory. Under Windows XP, this is <em>C:\Documents and Settings\USER\Application Data\openBVE\ManagedContent</em>. For other operating systems, you need to find out yourself.
+			</div>
+			<div>
+				Alternatively, you can customize the <a href="../../use/filesystem.html">file system</a>
+				and place managed add-ons somewhere else. If you downloaded the patch to store all userdata in the installation directory, then you can find managed add-ons under <em>openBVE\UserData\ManagedContent</em>.
+			</div>
+			<h2>
+				<a id="creatingyourfirstaddon">Creating your first add-on</a>
+			</h2>
+			<div>
+				Once you have found the directory where managed add-ons are stored, open it. You will find one directory per package. The name of a directory is equivalent to the name of its package.
+			</div>
+			<div>
+				Create a new directory with the name of your package. Please note that package names must not contain spaces. There are also some other characters that are not allowed, such as / \ [ ] . , : ' " $ and possibly a few others. In general, please use only letters, numbers, dashes (-) and underscores (_).
+			</div>
+			<div>
+				Now open the directory and create a new file called <strong>package.cfg</strong>. Place the following content inside:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							protected = true <br />
+							version = 0.1 <br />
+							type = route <br />
+							caption[en-US] = Ginza Line <br />
+							operator[en-US] = Tokyo Metro <br />
+							city[en-US] = Tokyo <br />
+							country[en-US] = Japan <br />
+							entry = Railway\Route
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				First of all, the <strong>protected</strong> attribute, when set to <em>true</em>, tells openBVE not to remove or change your package in any way. It would be a good idea to mark all your own packages this way so you cannot accidentally remove them in the Get Add-ons menu. Nonetheless, you should keep occasional backups just in case something goes wrong after all.
+			</div>
+			<div>
+				The <strong>version</strong> attribute tells the <a href="versions.html">version number</a>
+				of your package. As a general rule, works in progress should carry version numbers less than 1.0, and finished products version numbers starting with 1.0. The <strong>type</strong> attribute is the package type, which is either <em>route</em>, <em>train</em>, <em>library</em> or <em>shared library</em>. The <strong>caption</strong>, <strong>operator</strong>, <strong>city</strong> and <strong>country</strong> attributes, along with others, are additional metadata that describe your add-on. Please note the language codes that follows these attributes. They allow you to provide the attributes in different languages. For a list of language codes, see <a href="http://www.lingoes.net/en/translator/langcode.htm">here</a>. You will find more examples on metadata later.
+			</div>
+			<h3>
+				<a id="routes">Routes</a>
+			</h3>
+			<div>
+				The easiest way to create a route is to re-create the folder structure <strong>Railway</strong> (with <strong>Route</strong>, <strong>Object</strong> and <strong>Sound</strong>) inside the package's root directory. Basically, you populate these directories with just your own add-on instead of intermingling them with others. The <strong>entry</strong> attribute tells openBVE where to look for route files. In this case, it must be <em>Railway\Route</em>.
+			</div>
+			<h3>
+				<a id="trains">Trains</a>
+			</h3>
+			<div>
+				A train package can contain one or several trains. For each train, create one additional directory inside the package's root directory with the name of the train. The <strong>entry</strong> attribute can be left out or set to an empty string.
+			</div>
+			<h2>
+				<a id="testingyourfirstaddonlocally">Testing your first add-on locally</a>
+			</h2>
+			<div>
+				Now it would be a good time to give your add-on a try. Open the game and see if your add-on is listed in the route or train selection, and if the categorization is correct. Please note, however, that the lists are automatically flattened out in certain cases. For example, if all of your installed add-ons are tagged <em>Japan</em>, then the country will not appear in the hierarchy, and instead, the list might directly skip to the city, the operator, or even directly to your add-on.
+			</div>
+			<div>
+				Please note that all add-ons distributed under managed content must <strong>function properly</strong>. This means there must be no errors (and generally also no warnings) produced by your add-on. Additionally, add-ons must only use UTF-8 for text files and must not contain any Windows-only plugins.
+			</div>
+			<div>
+				In the current development version of openBVE, the list of errors is logged to a text file instead of appearing before starting the game. You can find this log file under <em>UserData\Settings\log.txt</em>.
+			</div>
+			<h2>
+				<a id="distributingyourfirstaddon">Distributing your first add-on</a>
+			</h2>
+			<div>
+				In order to distribute your add-on, you must first license it, then package it correctly, then upload it to your server, then create a descriptor file, then upload the descriptor to your server, and finally submit the URL to the descriptor to the openBVE project. Please find each of these steps explained in detail below.
+			</div>
+			<h3>
+				<a id="licensing">Licensing</a>
+			</h3>
+			<div>
+				First things first, you must include a <strong>LICENSE</strong> file (without file extension) inside your package (next to the package.cfg). Put the following exact text into the file:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							This add-on is placed under the following license: <br />
+							<br />
+							YOU ARE ALLOWED TO MAKE VERBATIM COPIES OF THIS ADD-ON. <br />
+							<br />
+							There are no terms and no conditions. This applies worldwide and is unlimited in duration. If additional permissions are granted, they are covered in a separate license.
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				You can find all licenses that are accepted <a href="licenses.html">here</a>. If you want to inform users of additional rights, please include them in a <strong>separate</strong> file.
+			</div>
+			<h3>
+				<a id="packaging">Packaging</a>
+			</h3>
+			<div>
+				At the moment, the only archive format supported is <strong>.tar.gz</strong>, also commonly known as the tarball. Simply take the package's root directory and compress it as a tarball.
+			</div>
+			<div>
+				If you are on Windows and are looking for a program that can create tarballs, the following example will show you how to do this with <a href="http://www.7-zip.org/">7-Zip</a>.
+			</div>
+			<div>
+				We start out with the package directory...
+			</div>
+			<div>
+				<img src="../../common/tarball1.png" alt="7-Zip" />
+			</div>
+			<div>
+				<img src="../../common/tarball2.png" alt="7-Zip" />
+			</div>
+			<div>
+				<img src="../../common/tarball3.png" alt="7-Zip" />
+			</div>
+			<div>
+				<img src="../../common/tarball4.png" alt="7-Zip" />
+			</div>
+			<div>
+				<img src="../../common/tarball5.png" alt="7-Zip" />
+			</div>
+			<div>
+				<img src="../../common/tarball6.png" alt="7-Zip" />
+			</div>
+			<div>... and finally get the <strong>.tar.gz</strong> file that we are interested in.
+			</div>
+			<div>
+				Please note that openBVE expects all file names in tar archives to be encoded in UTF-8. If you are using a program that does not support UTF-8 in tar archives (such as 7-Zip), then you must only use ASCII characters for file names in your add-on.
+			</div>
+			<h3>
+				<a id="thedescriptor">The descriptor</a>
+			</h3>
+			<div>
+				Now that you have packaged your add-on, upload it to your server. The next step is to create a descriptor. The descriptor is a text file that you will also upload to your server, but ideally at a fixed URL. The descriptor contains information about all the packages that you offer on your server, and you can later add to it as you upload more add-ons or update your existing ones.
+			</div>
+			<div>
+				In order to create a descriptor for your first add-on, create a text file and put the following content inside the file:
+			</div>
+			<table class="table-grid">
+				<tr>
+					<td>
+						<tt>
+							[package] <br />
+							name = animated-object-demo-route <br />
+							version = 1.0 <br />
+							size = 1069556 <br />
+							md5 = 4C8D3D814F4A68E4CD7A9C5F784B817A <br />
+							sources = http://trainsimframework.org/common/animated-object-demo-route.tar.gz <br />
+							type = route <br />
+							country[en-US] = Japan <br />
+							caption[en-US] = Animated Object Demonstration Route <br />
+							description[en-US] = This minimalistic route shows some animated objects in action...
+						</tt>
+					</td>
+				</tr>
+			</table>
+			<div>
+				The descriptor has virtually the same structure as the package.cfg, but each package in the descriptor must start with the <strong>[package]</strong> line. There can be as many packages referenced in your descriptor as you want.
+			</div>
+			<div>
+				For each package, there are several important attributes. You should already know <strong>name</strong>, <strong>version</strong> and <strong>type</strong>. New is that you have to note down the exact file size of your .tar.gz file and its MD5. If you don't know how to compute the MD5, try using <a href="../../common/md5.zip">this tool</a>
+				which will automatically create the size and md5 lines for you. <strong>Sources</strong> is a list of comma-separated URLs where the add-on can be downloaded from. This means that you can upload your add-on to multiple servers and openBVE will simply take the first one that works. Please note that the URLs must be direct links to the archive file, not to any HTML download page. The other attributes such as <strong>country</strong>, <strong>caption</strong> and <strong>description</strong> are among several that are collectively referred to as metadata. You can find a complete list of all supported metadata tags <a href="descriptor.html">here</a>.
+			</div>
+			<div>
+				Once you have created the descriptor, upload it to your server, then submit the URL to the descriptor to the openBVE project:
+			</div>
+			<div>
+				<img src="../../common/mail.png" alt="E-mail address is hidden in this image" />
+			</div>
+			<div>
+				Once the URL to your descriptor file is known to the openBVE project, it will be automatically <strong>crawled</strong> at least once every 48 hours, collecting information on new packages, newer versions of existing packages, or of updated metadata. This means that you only have to submit the URL to the descriptor <strong>once</strong>, but that it can take up to 48 hours before any change you make to it will be reflected in openBVE.
+			</div>
+			<div>
+				It is very important that you keep the descriptor at a fixed URL because newer versions of existing packages are only accepted from the descriptor that originally introduced that package. This is called the <strong>same-origin policy</strong>. This mechanism basically ensures that only you can upload newer versions of your packages, not anybody else, intended to counter potential vandalism.
+			</div>
+			<h2>
+				<a id="testingyourfirstaddonagain">Testing your first add-on again</a>
+			</h2>
+			<div>
+				Now that you have submitted your add-on, you should check whether it appears in the Get Add-ons menu. Keep in mind that this may take up to 48 hours. Once you see it listed here (with a <span style="color: teal;">blue</span>
+				icon), it might be a good idea to install it using a separate copy of openBVE. If your add-on still works after giving it a try, congratulations! If not, please fix the problem as soon as possible. Keep in mind that you have to increment the version number and also make the necessary changes to your descriptor, then upload everything again. Please note that add-ons that do not function properly will be blocked, or in case they are incorrectly packaged or licensed, will not be accepted in the first place.
+			</div>
+			<div>
+				In case your add-on does not appear in the Get Add-ons menu within 48 hours, please inspect the <a href="../../common/log.txt">log file</a>
+				created by the server and look out for any entry that mentions your descriptor, your package or any of your package sources.
+			</div>
+			<h2>
+				Advanced topics
+			</h2>
+			<div>
+				You have now learned how to create a single stand-alone package. Often though, you will want to split your add-on into multiple packages so that you can re-use them across several of your own add-ons, or simply in order to reduce the file size of each package, useful when you just want to update a particular element in your add-on. If you are interested, go on reading about splitting add-ons, or head back to the index page for a list of all available tutorials on managed add-ons.
+			</div>
+			<ul class="bullet-plain">
+				<li>
+					<a href="splitting.html">Splitting your add-on into multiple packages</a>
+				</li>
+				<li>
+					<a href="index.html">Back to the index page</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

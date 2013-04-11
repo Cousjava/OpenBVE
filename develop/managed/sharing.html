@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../../homepage.css" />
+		<link rel="icon" href="../../common/favicon.png" />
+		<title>
+			Managed add-ons - Creating reusable packages with shared libraries
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../../index.html"><img src="../../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				Managed add-ons - Creating reusable packages with shared libraries
+			</h1>
+			<div>
+				In <a href="splitting.html">Splitting your add-on into multiple packages</a>, you have learned how to split your add-on into multiple packages and how to reference one package from within another.
+			</div>
+			<div>
+				There is nothing preventing you from referencing packages created by other authors, but there is no guarantee that the internal structure of a package stays the same in future versions. This means that if you referenced a file in someone else's package, that file might not be there in future versions, thus braking your add-on.
+			</div>
+			<div>
+				For this reason, you should generally only reference packages you have created yourself. But there are also <strong>shared libraries</strong> - packages specifically intended for others to reuse.
+			</div>
+			<h2>
+				<a id="whatisasharedlibrary">What is a shared library?</a>
+			</h2>
+			<div>
+				Basically, a shared library is the same as a regular library package, but comes with the promise that changes in future versions will retain backward compatibility on the file level.
+			</div>
+			<div>
+				This means that in a shared library, <strong>no file must ever be removed</strong>, <strong>renamed</strong> or suddenly <strong>depict something else</strong>.
+			</div>
+			<div>
+				The benefit - consider a package of signals - is that improvements can be made at any time by the author of the shared library, and those improvements will affect all add-ons that reference the shared library. There are lots of candidates for shared libraries: rails, signals, beacons, stations, buildings, background images, trees, train plugins, and many more.
+			</div>
+			<div>
+				Of course, if you primarily want to offer objects such as buildings, you might want to only give the backward compatibility promise for the object files themselves, not for the textures used by them. In this case, include a <strong>README</strong> file that makes <strong>crystal clear</strong> which files are covered by the backward compatibility promise and which not. For example, give the backward compatibility promise to <strong>all objects</strong>, or <strong>all textures</strong>, or to <strong>no sounds</strong>.
+			</div>
+			<div>
+				Please note that in case you <em>do</em> break backward compatibility in your shared library, the specific version that breaks backward compatibility may be blocked permanently and an older version may be restored.
+			</div>
+			<h2>
+				Navigation
+			</h2>
+			<ul class="bullet-plain">
+				<li>
+					<a href="index.html">Back to the index page</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

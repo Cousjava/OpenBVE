@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../homepage.css" />
+		<link rel="icon" href="../common/favicon.png" />
+		<title>
+			The scoring system
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../index.html"><img src="../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				The scoring system
+			</h1>
+			<div>
+				The scoring system monitors your performance and is doing that regardless of the driving mode. After driving a session, you can access the performance analysis by opening the <em>Review last game</em> page from the main menu.
+			</div>
+			<div>
+				<hr />
+				At the beginning of the simulation, you start with a score of zero points. The following events award you with points:
+			</div>
+			<ul class="bullet-plain-spaced">
+				<li>
+					Every successful stop at a station at which you are supposed to stop: <span style="color: green;"><strong>100 points</strong></span>
+				</li>
+				<li>
+					Stopped within 1% of the allowed stop tolerance: <span style="color: green;"><strong>15 points</strong></span>
+				</li>
+				<li>
+					Arrived right on schedule: <span style="color: green;"><strong>15 points</strong></span>
+				</li>
+			</ul>
+			<div>
+				<hr />
+				The following events are penalized:
+			</div>
+			<ul class="bullet-plain-spaced">
+				<li>
+					Being late at a station: <br />
+					Score depends on duration of lateness: <span style="color: red;"><strong>-20 points</strong></span>
+					per minute
+				</li>
+				<li>
+					Being off the perfect stop position: <br />
+					Score depends on the position: At most <span style="color: red;"><strong>-50 points</strong></span>
+					on the outer rim of the tolerance.
+				</li>
+				<li>
+					Departing a station before the expected departure time: <br />
+					Score depends on the time difference to the expected departure time: <span style="color: red;"><strong>-90 points</strong></span>
+					per minute
+				</li>
+				<li>
+					Opening the doors outside of the station area: <br />
+					Score depends on duration of doors opened.
+				</li>
+				<li>
+					Exceeding the currently allowed track speed limit: <br />
+					Score depends on amount and duration of overspeed.
+				</li>
+				<li>
+					Passing a red signal: <span style="color: red;"><strong>-100 points</strong></span>
+				</li>
+				<li>
+					Causing passenger discomfort: <span style="color: red;"><strong>-20 points</strong></span>
+				</li>
+				<li>
+					Forcing the train to topple: <br />
+					Score depends on duration of toppling.
+				</li>
+				<li>
+					Causing a derailment: The score is reset to <span style="color: red;"><strong>-1000</strong></span>
+					points if not already lower.
+				</li>
+			</ul>
+			<div>
+				<hr />
+				The maximum possible score is 100 times the amount of station at which you are expected to stop. Additional points you gain through the boni are only meant to compensate for penalties.
+			</div>
+			<div>
+				The final score is translated into a percentage between 0% and 100%, giving any of the following ratings:
+			</div>
+			<table class="table-box-h">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							90% - 100%
+						</td>
+						<td>
+							<span style="color: blue;">Excellent</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							80% - 90%
+						</td>
+						<td>
+							<span style="color: teal;">Superb</span>
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							70% - 80%
+						</td>
+						<td>
+							<span style="color: teal;">Great</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							60% - 70%
+						</td>
+						<td>
+							<span style="color: green;">Good</span>
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							50% - 60%
+						</td>
+						<td>
+							<span style="color: green;">Mediocre</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							40% - 50%
+						</td>
+						<td>
+							<span style="color: orange;">Fair</span>
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							30% - 40%
+						</td>
+						<td>
+							<span style="color: orange;">Poor</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							20% - 30%
+						</td>
+						<td>
+							<span style="color: red;">Bad</span>
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							10% - 20%
+						</td>
+						<td>
+							<span style="color: red;">Terrible</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							0% - 10%
+						</td>
+						<td>
+							<span style="color: fuchsia;">Abysmal</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

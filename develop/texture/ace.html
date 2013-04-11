@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../../homepage.css" />
+		<link rel="icon" href="../../common/favicon.png" />
+		<title>
+			ACE file format
+		</title>
+	</head>
+	<body>
+		<div class="homepage-body">
+			<a href="../../index.html"><img src="../../common/homepage_banner.png" alt="Banner" style="border-style: none;" /></a>
+			<ul class="bullet-menu">
+				<li>
+					<a href="../../use/index.html">Install and Play</a>
+				</li>
+				<li>
+					<a href="../../develop/index.html">Create Add-ons</a>
+				</li>
+				<li>
+					<a href="../../credits.html">Credits</a>
+				</li>
+			</ul>
+			<h1>
+				ACE file format
+			</h1>
+			<div>
+				This page describes the MSTS ACE texture file format as it is implemented in openBVE. The plugin responsible for loading ACE textures is Texture.Ace.dll.
+			</div>
+			<div>
+				Textures can be 24-bit uncompressed RGB, with an optional 1-bit per pixel transparency or a full 8-bit alpha channel. Alternatively, textures can employ 4-bit per pixel lossy DXT-1 compression.
+			</div>
+			<div>
+				The file format supports storing pre-rendered mipmaps as well as lossless zlib compression. Mipmaps are not supported by the plugin - only the original size is considered and the other images are ignored.
+			</div>
+			<ol class="contents">
+				<li>
+					<a href="#legend">Legend</a>
+				</li>
+				<li>
+					<a href="#headerzlibcompressed">Header (zlib-compressed)</a>
+				</li>
+				<li>
+					<a href="#headeruncompressed">Header (uncompressed)</a>
+				</li>
+				<li>
+					<a href="#rgbtype14channels3">RGB (type=14, channels=3)</a>
+				</li>
+				<li>
+					<a href="#rgb1bittransparencytype16channels4">RGB + 1 bit transparency (type=16, channels=4)</a>
+				</li>
+				<li>
+					<a href="#rgb8bitalphatype17channels5">RGB + 8 bit alpha (type=17, channels=5)</a>
+				</li>
+				<li>
+					<a href="#dxt1type18channels34">DXT1 (type=18, channels=3/4)</a>
+				</li>
+			</ol>
+			<h2>
+				<a id="legend">Legend</a>
+			</h2>
+			<div>
+				The following abbreviations are used in this document.
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							byte
+						</td>
+						<td>
+							An unsigned 8-bit byte
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							byte[n]
+						</td>
+						<td>
+							An array of n bytes
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							ushort
+						</td>
+						<td>
+							An unsigned 16-bit integer in little endian byte order
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							uint
+						</td>
+						<td>
+							An unsigned 32-bit integer in little endian byte order
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>
+				<a id="headerzlibcompressed">Header (zlib-compressed)</a>
+			</h2>
+			<div>
+				The file starts with the following header.
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							byte[8]
+						</td>
+						<td>
+							identifier: <br />
+							53 49 4D 49 53 41 40 46
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							uint
+						</td>
+						<td>
+							length of uncompressed data
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							byte[4]
+						</td>
+						<td>
+							identifier: <br />
+							40 40 40 40
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				The remainder of the file is uncompressed according to the zlib algorithm and the resulting data then treated as if it were following the identifier of an uncompressed ACE file.
+			</div>
+			<h2>
+				<a id="headeruncompressed">Header (uncompressed)</a>
+			</h2>
+			<div>
+				The file starts with the following header. Fields marked <span style="color: red;">red</span>
+				are ignored by openBVE.
+			</div>
+			<table class="table-one-column">
+				<colgroup>
+					<col class="first" />
+				</colgroup>
+				<tbody>
+					<tr class="even">
+						<td>
+							byte[8]
+						</td>
+						<td>
+							identifier: <br />
+							53 49 4D 49 53 41 40 40
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							byte[8]
+						</td>
+						<td>
+							identifier: <br />
+							40 40 40 40 40 40 40 40
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							uint
+						</td>
+						<td>
+							<span style="color: red;">unknown1</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							uint
+						</td>
+						<td>
+							<span style="color: red;">unknown2</span>
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							uint
+						</td>
+						<td>
+							width
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							uint
+						</td>
+						<td>
+							height
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							uint
+						</td>
+						<td>
+							type: <br />
+							14 = RGB <br />
+							16 = RGB + 1 bit transparency <br />
+							17 = RGB + 8 bit alpha <br />
+							18 = DXT1
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							uint
+						</td>
+						<td>
+							channels: <br />
+							3 = RGB <br />
+							4 = RGB + 1 bit transparency <br />
+							5 = RGB + 8 bit alpha
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							uint
+						</td>
+						<td>
+							<span style="color: red;">unknown3</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							byte[16]
+						</td>
+						<td>
+							<span style="color: red;">name</span>
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							byte[72]
+						</td>
+						<td>
+							<span style="color: red;">copyright</span>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>
+							uint
+						</td>
+						<td>
+							<span style="color: red;">unknown4</span>
+						</td>
+					</tr>
+					<tr class="even">
+						<td>
+							byte[n]
+						</td>
+						<td>
+							<span style="color: red;">unknown5:</span>
+							<br />
+							if channels = 3 then n = 80 <br />
+							if channels = 4 then n = 96 <br />
+							if channels = 5 then n = 112
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>
+				<a id="rgbtype14channels3">RGB (type=14, channels=3)</a>
+			</h2>
+			<div>
+				Following the header, offsets of type uint are read for each scanline. There are as many scanlines as the texture has height. Scanlines are to be interpreted top to bottom. The reader must navigate to each offset plus 16 bytes, measured from the beginning of the file, in order to read pixel data for that scanline.
+			</div>
+			<div>
+				For each scanline, pixels are stored left to right. First, all red bytes are read (one byte per pixel), followed by all green bytes, followed by all blue bytes.
+			</div>
+			<h2>
+				<a id="rgb1bittransparencytype16channels4">RGB + 1 bit transparency (type=16, channels=4)</a>
+			</h2>
+			<div>
+				Following the header, offsets of type uint are read for each scanline. There are as many scanlines as the texture has height. Scanlines are to be interpreted top to bottom. The reader must navigate to each offset plus 16 bytes, measured from the beginning of the file, in order to read pixel data for that scanline.
+			</div>
+			<div>
+				For each scanline, pixels are stored left to right. First, all red bytes are read (one byte per pixel), followed by all green bytes, followed by all blue bytes. Then, (width+7)/8 bytes are read of which one bit is used to determine transparency for each pixel. Within each byte, the most-significant bit corresponds to the left-most pixel.
+			</div>
+			<h2>
+				<a id="rgb8bitalphatype17channels5">RGB + 8 bit alpha (type=17, channels=5)</a>
+			</h2>
+			<div>
+				Following the header, offsets of type uint are read for each scanline. There are as many scanlines as the texture has height. Scanlines are to be interpreted top to bottom. The reader must navigate to each offset plus 16 bytes, measured from the beginning of the file, in order to read pixel data for that scanline.
+			</div>
+			<div>
+				For each scanline, pixels are stored left to right. First, all red bytes are read (one byte per pixel), followed by all green bytes, followed by all blue bytes, followed by (width+7)/8 bytes of padding, followed by all alpha bytes (one byte per pixel).
+			</div>
+			<h2>
+				<a id="dxt1type18channels34">DXT1 (type=18, channels=3/4)</a>
+			</h2>
+			<div>
+				Following the header, an offset of type uint is read to determine the location at which the compressed pixel data is stored. The reader must navigate to the offset read plus 20 bytes, measured from the beginning of the file.
+			</div>
+			<div>
+				The compression divides the texture in blocks of 4x4 pixels, requiring that the width and height be multiples of 4. Blocks are stored row-based, with the rows stored top to bottom, and within each row left to right. For each block, 8 bytes are read which define a palette of four colors and 16 indices to those colors, one index for each pixel.
+			</div>
+			<div>
+				When reading a block, first two ushorts are read, called entry0 and entry1, respectively. They each encode RGB color data with 5 bits of red (in the most significant bits), 6 bits of green and 5 bits of blue (in the least significant bits), called color0 and color1, respectively. If entry0 &lt; entry1, then color2 = (2*color0+color1)/3 and color3 = (color0+2*color1)/3, with the arithmetic done per color component. If entry0 &gt;= entry1, then color2 = (color0+color1)/2, with the arithmetic done per color component, and color3 = opaque black if channels = 3, or color3 = transparent black if channels = 4.
+			</div>
+			<div>
+				Then, a uint is read that contains 16 2-bit indices, one index for each pixel. The least-significant two bits correspond to the top-left pixel in the block, and the most-significant two bits to the bottom-right pixel in the block. The indices correspond to the color0, color1, color2 and color3.
+			</div>
+		</div>
+	</body>
+</html>
