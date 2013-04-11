@@ -128,7 +128,7 @@ namespace OpenBve {
 		// interface type
 		internal enum InterfaceType { Normal, Pause, Menu }
 		internal static InterfaceType CurrentInterface = InterfaceType.Normal;
-		internal enum MenuTag { None, Caption, Back, JumpToStation, Save, ExitToMainMenu, Quit }
+		public enum MenuTag { None, Caption, Back, JumpToStation, Save, ExitToMainMenu, Quit }
 		internal abstract class MenuEntry {
 			internal string Text;
 			internal double Highlight;
@@ -194,7 +194,7 @@ namespace OpenBve {
 				if (n != 0) {
 					CurrentMenu = new MenuEntry[5];
 					CurrentMenu[0] = new MenuCommand(Interface.GetInterfaceString("menu_resume"), MenuTag.Back, 0);
-					CurrentMenu[1] = new MenuCommand(Interface.GetInterfaceString("Save"),MenuTag.Save,0);
+					CurrentMenu[1] = new MenuCommand(Interface.GetInterfaceString("menu_save"),MenuTag.Save,0);
 					CurrentMenu[2] = new MenuSubmenu(Interface.GetInterfaceString("menu_jump"), a);
 					CurrentMenu[3] = new MenuSubmenu(Interface.GetInterfaceString("menu_exit"), new MenuEntry[] {
 					                                 	new MenuCaption(Interface.GetInterfaceString("menu_exit_question")),

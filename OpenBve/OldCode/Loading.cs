@@ -81,7 +81,8 @@ namespace OpenBve {
 			#endif
 			Complete = true;
 		}
-		private static void LoadEverythingThreaded() {
+
+		public static void LoadEverythingThreaded() {
 			string RailwayFolder = GetRailwayFolder(CurrentRouteFile);
 //			if (RailwayFolder == null) {
 //				Interface.AddMessage(Interface.MessageType.Critical, false, "The Railway folder could not be found. Please check your folder structure.");
@@ -314,5 +315,47 @@ namespace OpenBve {
 			}
 		}
 
+		public struct SaveValues{
+		 	public double sRouteProgress;
+		 	public double sTrainProgress;
+		 	public bool sCancel;
+		 	public bool sComplete;
+	//		private static Thread Loader = null;
+		 	public string sCurrentRouteFile;
+		 	public Encoding sCurrentRouteEncoding;
+		 	public string sCurrentTrainFolder;
+			public Encoding sCurrentTrainEncoding;
+			public double sTrainProgressCurrentSum;
+			public double sTrainProgressCurrentWeight;
+		}
+
+		public static SaveValues GetGameValues(){
+			SaveValues savev = new SaveValues();
+			savev.sRouteProgress = RouteProgress;
+			savev.sTrainProgress = TrainProgress;
+			savev.sCancel = Cancel;
+			savev.sComplete = Complete;
+			savev.sCurrentRouteFile = CurrentRouteFile;
+			savev.sCurrentRouteEncoding = CurrentRouteEncoding;
+			savev.sCurrentTrainFolder = CurrentTrainFolder;
+			savev.sCurrentTrainEncoding = CurrentRouteEncoding;
+			savev.sTrainProgressCurrentSum = TrainProgressCurrentSum;
+			savev.sTrainProgressCurrentWeight = TrainProgressCurrentWeight;
+			return savev;
+		}
+
+		public static void LoadGameValues(SaveValues loadv){
+			RouteProgress = loadv.sRouteProgress;
+			TrainProgress = loadv.sTrainProgress;
+			Cancel = loadv.sCancel;
+			Complete = loadv.sComplete;
+			CurrentRouteEncoding = loadv.sCurrentRouteEncoding;
+			CurrentRouteFile = loadv.sCurrentRouteFile;
+			CurrentTrainFolder = loadv.sCurrentTrainFolder;
+			CurrentTrainEncoding = loadv.sCurrentTrainEncoding;
+			TrainProgressCurrentSum = loadv.sTrainProgress;
+			TrainProgressCurrentWeight = loadv.sTrainProgressCurrentWeight;
+			return;
+		}
 	}
 }
